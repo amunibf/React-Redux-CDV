@@ -1,28 +1,23 @@
 import { FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE } from "./userTypes"
 import axios from 'axios'
 
-const fetchUsersRequest = ()=>({
-    type : FETCH_USER_REQUEST
+const fetchUsersRequest = payload=>({
+    type : FETCH_USER_REQUEST,
+    payload 
 })
 
-const fetchUsersSuccess = users=>({
+const fetchUsersSuccess = payload=>({
     type : FETCH_USER_SUCCESS ,
-    payload : users
+    payload
 })
-const fetchUsersFailure = error=>({
+const fetchUsersFailure = payload=>({
     type : FETCH_USER_FAILURE ,
-    payload : error
+    payload
 })
 
 export const fetchUsers = ()=>dispatch=>{
     dispatch(fetchUsersRequest())
     axios.get('https://jsonplaceholder.typicode.com/users')
-    .then(response=>{
-        const users=response.data
-        dispatch(fetchUsersSuccess(users))
-    })
-    .catch(error=>{
-        const errorMsg = error.message
-        dispatch(fetchUsersFailure(errorMsg))
-    })
+    .then(response=>dispatch(fetchUsersSuccess(response.data)))
+    .catch(error=>dispatch(fetchUsersFailure(error.message)))
 }
