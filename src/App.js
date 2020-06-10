@@ -15,13 +15,13 @@ class App extends Component {
     return (
       <div className="App">
       <Provider store={store}>
-      <UserContainer/>
+      <UserContainer  />
       {/* <HooksCakeContainer/> */}
         {/* <ItemContainer cake/>
         <ItemContainer/>
         <CakeContainer/>
-        <NewCakeContainer/>
-        <IceCreamContainer/> */}
+        <NewCakeContainer/> */}
+        {/* <IceCreamContainer/> */}
 
       </Provider>
       </div>
